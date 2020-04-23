@@ -6,10 +6,16 @@
 4. bbs.ngix 文件也一样，部署在/var/, 链接到/etc/
     为啥要用反向代理?
     要监听默认的80端口，转到2000或2001
-5. 其他配置conf文件：
+    service nginx restart
+5. 其他配置conf文件： 19-2, 21-1
     mongod.conf
+        必须建立　/data/db/journal文件夹
+        日志在　/var/log/mongodb/mongod.log
     redis-server.conf
+
 6. 从web14到web20，添加了数据库，添加了redis，添加了ngix，保留了wsgi，
     服务器部署从windows上的能跑通变为了
-    迁移在Linux上进行测试。
+    迁移在Linux上进行测试，通过
+    需保证/etc/supervisor/conf.d下面有这些配置:
+    bbs.conf  mongod.conf  redis-server.conf
     

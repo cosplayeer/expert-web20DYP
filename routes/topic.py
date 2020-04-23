@@ -23,8 +23,8 @@ def index():
     # board_id = 2
     board_id = int(request.args.get('board_id', -1))
     if board_id == -1:
-        #ms = Topic.cache_all()
-        ms = Topic.all_delay()
+        ms = Topic.cache_all()
+        # ms = Topic.all_delay()
     else:
         #ms = Topic.cache_find(board_id)
         ms = Topic.find_all(board_id=board_id)
@@ -47,8 +47,8 @@ def add():
     form = request.form
     u = current_user()
     m = Topic.new(form, user_id=u.id)
-    for i in range(1000):
-        m = Topic.new(form, user_id=u.id)
+    # for i in range(1000):
+    #     m = Topic.new(form, user_id=u.id)
     return redirect(url_for('.detail', id=m.id))
 
 
