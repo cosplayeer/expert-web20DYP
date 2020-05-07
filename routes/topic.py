@@ -38,8 +38,11 @@ def index():
 @main.route('/<int:id>')
 def detail(id):
     m = Topic.get(id)
+    # _u = m.get('user_id')
+    u = m.user()
+    # print(u)
     # 传递 topic 的所有 reply 到 页面中
-    return render_template("topic/detail.html", topic=m)
+    return render_template("topic/detail.html", topic=m, username=u)
 
 
 @main.route("/add", methods=["POST"])
