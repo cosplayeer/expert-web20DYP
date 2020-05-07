@@ -105,3 +105,8 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Linux
+*pyc
+settings.json
+*origin.conf
