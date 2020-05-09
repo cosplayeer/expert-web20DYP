@@ -223,14 +223,20 @@ class Mongua(object):
         mongua.db[name].save(self.__dict__)
 
     def delete(self):
+        print("selff is :{}".format(self)) #3008
+        # name = self
         name = self.__class__.__name__
+        # print("self class :{}".format(self.__class__.__name__))
+        print("name : {}".format(name))
         query = {
-            'id': self.id,
+            'id': self,
+            # 'id': self.id,
         }
         values = {
-            'deleted': True
+            '$set': {'deleted': True}
         }
-        mongua.db[name].update_one(query, values)
+        mongua.db['Topic'].update_one(query, values)
+        # mongua.db[name].update_one(query, values)
         # self.deleted = True
         # self.save()
 
