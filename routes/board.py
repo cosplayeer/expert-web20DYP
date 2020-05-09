@@ -4,6 +4,7 @@ from flask import (
     redirect,
     url_for,
     Blueprint,
+    abort,
 )
 
 from routes import *
@@ -16,8 +17,13 @@ main = Blueprint('board', __name__)
 
 @main.route("/admin")
 def index():
-    return render_template('board/admin_index.html')
-    ...
+    u = current_user()
+    # boards = Board.all()
+    # print(boards)
+    if u.username == 'admin':
+        return render_template('board/admin_index.html')
+    else:
+        abort(403)
 
 
 @main.route("/add", methods=["POST"])

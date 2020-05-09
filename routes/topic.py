@@ -30,7 +30,7 @@ def index():
         ms = Topic.find_all(board_id=board_id)
     token = str(uuid.uuid4())
     u = current_user()
-    csrf_tokens['token'] = u.id
+    csrf_tokens[token] = u.id
     bs = Board.all()
     return render_template("topic/index.html", ms=ms, token=token, bs=bs)
 
@@ -70,6 +70,8 @@ def delete():
         else:
             abort(404)
     else:
+        print(token)
+        print(csrf_tokens)
         abort(403)
 
 
