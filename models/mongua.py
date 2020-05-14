@@ -217,26 +217,28 @@ class Mongua(object):
                 setattr(self, k, v)
         # self.updated_time = int(time.time()) fixme
         self.save()
-
+    
     def save(self):
         name = self.__class__.__name__
         mongua.db[name].save(self.__dict__)
 
-    def delete(self):
-        print("selff is :{}".format(self)) #3008
-        # name = self
+    # @classmethod
+    # def delete(cls,id):
+    def delete(self,id):
+        # name = cls.__name__
         name = self.__class__.__name__
+        # print("selff is :{}".format(self)) #3008
+        # print("selff is :{}".format(name)) #3008
         # print("self class :{}".format(self.__class__.__name__))
         print("name : {}".format(name))
+        print("id : {}".format(id))
         query = {
-            'id': self,
-            # 'id': self.id,
+            'id': id,
         }
         values = {
             '$set': {'deleted': True}
         }
-        mongua.db['Topic'].update_one(query, values)
-        # mongua.db[name].update_one(query, values)
+        mongua.db[name].update_one(query, values)
         # self.deleted = True
         # self.save()
 

@@ -65,7 +65,7 @@ def delete():
         csrf_tokens.pop(token)
         if u is not None:
             print('删除 topic 用户是', u, id)
-            Topic.delete(id)
+            Topic().delete(id=id)
             return redirect(url_for('.index'))
         else:
             abort(404)
